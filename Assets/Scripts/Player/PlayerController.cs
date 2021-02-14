@@ -6,7 +6,9 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     #region Inspector
+    [SerializeField] private CharacterController controller;
     [SerializeField] private float speed = 3f;
+    [SerializeField] private float gravity = -9.81f;
     #endregion
 
     private Vector3 movementDirection;
@@ -22,8 +24,7 @@ public class PlayerController : MonoBehaviour
     public void OnMovement(InputAction.CallbackContext value)
     {
         Vector2 inputMovement = value.ReadValue<Vector2>();
-        Debug.Log(inputMovement);
-        movementDirection = new Vector3(inputMovement.x, 0, inputMovement.y);
+        movementDirection = new Vector3(inputMovement.x, 0f, inputMovement.y);
     }
 
     public void OnTargetedAction(InputAction.CallbackContext value)
@@ -34,7 +35,9 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        transform.position += movementDirection * speed * Time.deltaTime;
+        Vector3 movement = movementDirection * speed * Time.deltaTime;
+        movement.y = gravity;
+        controller.Move(movement);
     }
 
     /// <summary>
