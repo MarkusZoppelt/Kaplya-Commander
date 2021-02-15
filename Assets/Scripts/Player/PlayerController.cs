@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float speed = 3f;
     [SerializeField] private float gravity = -9.81f;
     [Header("Targeted Actions")]
+    [SerializeField] private GameObject targetIndicator;
     [SerializeField] private LayerMask targetLayerMask;
     [SerializeField] private float minThrowDistance = 4f;
     [SerializeField] private float maxThrowDistance = 15f;
@@ -47,6 +48,9 @@ public class PlayerController : MonoBehaviour
 
     // Calling blobs back
     RaycastHit[] nearbyBlobs;
+
+    // Throwing blobs
+    private Vector3 throwTargetPosition;
     
     private int currentFollowers = 0;
 
@@ -59,6 +63,7 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         Move();
+        UpdateTargetIndicator();
     }
     #endregion
 
@@ -105,6 +110,36 @@ public class PlayerController : MonoBehaviour
         transform.rotation = Quaternion.Euler(0f, targetAngle, 0f);
     }
 
+    private void UpdateTargetIndicator()
+    {
+        targetRay = playerCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
+        if (!Physics.Raycast(targetRay, out targetHit, 1000f, targetLayerMask))
+        {
+            throwTargetPosition = Vector3.negativeInfinity;
+            targetIndicator.SetActive(false);
+            return;
+        }
+
+        throwTargetPosition = targetHit.point;
+        float targetDistance = Vector3.Distance(transform.position, throwTargetPosition);
+        if (targetDistance < minThrowDistance)
+        {
+            throwTargetPosition = Vector3.negativeInfinity;
+            // TODO Maybe change indicator to show that you can call blobs back from that mouse position?
+            targetIndicator.SetActive(false);
+            return;
+        }
+
+        if (targetDistance > maxThrowDistance)
+        {
+            Vector3 throwDirection = (throwTargetPosition - transform.position).normalized;
+            throwTargetPosition = transform.position + (throwDirection * maxThrowDistance);
+        }
+
+        targetIndicator.SetActive(true);
+        targetIndicator.transform.position = throwTargetPosition;
+    }
+
     /// <summary>
     /// Determines the target of the action and calls either the throw- or callback-method
     /// </summary>
@@ -123,12 +158,7 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        if (targetDistance <= maxThrowDistance)
-        {
-            StartThrowingBlobs();
-            return;
-        }
-        // TODO Maybe clamp target position to range?
+        StartThrowingBlobs();
     }
 
     private void StopCurrentAction()
