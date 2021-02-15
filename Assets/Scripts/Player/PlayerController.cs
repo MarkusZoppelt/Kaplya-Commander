@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -51,8 +52,7 @@ public class PlayerController : MonoBehaviour
 
     // Throwing blobs
     private Vector3 throwTargetPosition;
-    
-    private int currentFollowers = 0;
+    private List<BlobBase> followingBlobs;
 
     #region Unity Methods
     private void Awake()
@@ -93,6 +93,7 @@ public class PlayerController : MonoBehaviour
     {
         playerCamera = Camera.main;
         state = PlayerActionState.NoAction;
+        followingBlobs = new List<BlobBase>();
     }
 
     private void Move()
@@ -204,10 +205,10 @@ public class PlayerController : MonoBehaviour
                     continue;
                 }
 
-                if (currentFollowers < maxFollowers)
+                if (followingBlobs.Count < maxFollowers)
                 {
                     blob.StartFollowing(followerTarget);
-                    currentFollowers++;
+                    followingBlobs.Add(blob);
                 }
             }
 
@@ -225,9 +226,18 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator ThrowBlobs()
     {
-        while(currentFollowers > 0)
+        while(followingBlobs.Count > 0)
         {
-            // TODO
+            if (throwTargetPosition == Vector3.negativeInfinity)
+            {
+                yield return null;
+            }
+
+            BlobBase blob = followingBlobs.First();
+            followingBlobs.Remove(blob);
+
+            blob.GetThrown(transform.position, throwTargetPosition);
+
             yield return new WaitForSeconds(timeBetweenThrows);
         }
 
