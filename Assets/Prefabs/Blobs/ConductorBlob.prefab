@@ -50,6 +50,10 @@ MonoBehaviour:
   movementSpeed: 8
   throwHeight: 6
   throwSpeed: 15
+  interactableLayerMask:
+    serializedVersion: 2
+    m_Bits: 2048
+  interactionRange: 3
 --- !u!195 &2652495687958098823
 NavMeshAgent:
   m_ObjectHideFlags: 0

@@ -17,10 +17,14 @@ public enum BlobState
 public class BlobBase : MonoBehaviour
 {
     #region Inspector
+    [Header("Base Movement")]
     [SerializeField] private NavMeshAgent navMeshAgent;
     [SerializeField] private float movementSpeed = 8f;
     [SerializeField] private float throwHeight = 6f;
     [SerializeField] private float throwSpeed = 15f;
+    [Header("Base Interaction")]
+    [SerializeField] private LayerMask interactableLayerMask;
+    [SerializeField] private float interactionRange = 3f;
     #endregion
 
     internal BlobState state;
@@ -33,7 +37,7 @@ public class BlobBase : MonoBehaviour
 
         internal set
         {
-            if (value != BlobState.Following)
+            if (value == BlobState.Idle)
             {
                 navMeshAgent.enabled = false;
             }
@@ -43,11 +47,15 @@ public class BlobBase : MonoBehaviour
             }
 
             state = value;
+            InitializeState();
         }
     }
 
     private Transform followTarget;
+    private Vector3 followOffset = Vector3.zero;
     private Vector3 lastTargetPosition = Vector3.zero;
+
+    private Interactable currentInteractable;
 
     #region Unity methods
     internal virtual void Awake()
@@ -67,11 +75,26 @@ public class BlobBase : MonoBehaviour
         navMeshAgent.speed = movementSpeed;
     }
 
+    internal virtual void InitializeState()
+    {
+        switch (State)
+        {
+            case BlobState.Following:
+                followOffset = Vector3.zero;
+                break;
+            case BlobState.Carrying:
+                followOffset = currentInteractable.GetBlobOffset();
+                followTarget = currentInteractable.transform;
+                break;
+        }
+    }
+
     internal virtual void ExecuteStateBehaviour()
     {
         switch (State)
         {
             case BlobState.Following:
+            case BlobState.Carrying:
                 MoveTowardsFollowTarget();
                 break;
             default:
@@ -97,15 +120,54 @@ public class BlobBase : MonoBehaviour
     public virtual void OnLanding()
     {
         State = BlobState.Idle;
-        // TODO Check if there is something to interact
+        SearchInteractables();
+    }
+
+    internal virtual void SearchInteractables()
+    {
+        RaycastHit[] hits = Physics.SphereCastAll(transform.position, interactionRange, Vector3.up, 0, interactableLayerMask);
+        List<EnemyController> nearbyEnemies = new List<EnemyController>();
+        List<Interactable> nearbyInteractables = new List<Interactable>();
+
+        foreach(var hit in hits)
+        {
+            EnemyController enemy = hit.collider.GetComponent<EnemyController>();
+            if (enemy != null)
+            {
+                nearbyEnemies.Add(enemy);
+                continue;
+            }
+
+            Interactable interactable = hit.collider.GetComponent<Interactable>();
+            if (interactable != null)
+            {
+                nearbyInteractables.Add(interactable);
+            }
+        }
+
+        if (nearbyEnemies.Count > 0)
+        {
+            // Attack closest enemy
+            var closestEnemy = Helper.GetClosestObject(nearbyEnemies.ToArray(), transform.position);
+            return;
+        }
+
+        if (nearbyInteractables.Count > 0)
+        {
+            // Interact with closest interactable
+            currentInteractable = Helper.GetClosestObject(nearbyInteractables.ToArray(), transform.position);
+            State = currentInteractable.AssignBlob(this);
+            return;
+        }
     }
 
     internal virtual void MoveTowardsFollowTarget()
     {
-        if(followTarget.position != lastTargetPosition)
+        Vector3 targetPosition = followTarget.position + followOffset;
+        if(targetPosition != lastTargetPosition)
         {
-            navMeshAgent.SetDestination(followTarget.position);
-            lastTargetPosition = followTarget.position;
+            navMeshAgent.SetDestination(targetPosition);
+            lastTargetPosition = targetPosition;
         }
     }
 }
