@@ -48,12 +48,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   navMeshAgent: {fileID: 2652495687958098823}
   movementSpeed: 8
+  defaultProximity: 1
   throwHeight: 6
   throwSpeed: 15
   interactableLayerMask:
     serializedVersion: 2
     m_Bits: 2048
   interactionRange: 3
+  carryProximity: 0.5
 --- !u!195 &2652495687958098823
 NavMeshAgent:
   m_ObjectHideFlags: 0

@@ -20,11 +20,13 @@ public class BlobBase : MonoBehaviour
     [Header("Base Movement")]
     [SerializeField] private NavMeshAgent navMeshAgent;
     [SerializeField] private float movementSpeed = 8f;
+    [SerializeField] private float defaultProximity = 1f;
     [SerializeField] private float throwHeight = 6f;
     [SerializeField] private float throwSpeed = 15f;
     [Header("Base Interaction")]
     [SerializeField] private LayerMask interactableLayerMask;
     [SerializeField] private float interactionRange = 3f;
+    [SerializeField] private float carryProximity = 0.1f;
     #endregion
 
     internal BlobState state;
@@ -81,10 +83,12 @@ public class BlobBase : MonoBehaviour
         {
             case BlobState.Following:
                 followOffset = Vector3.zero;
+                navMeshAgent.stoppingDistance = defaultProximity;
                 break;
             case BlobState.Carrying:
                 followOffset = currentInteractable.GetBlobOffset();
                 followTarget = currentInteractable.transform;
+                navMeshAgent.stoppingDistance = carryProximity;
                 break;
         }
     }
