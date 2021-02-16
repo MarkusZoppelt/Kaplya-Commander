@@ -35,7 +35,7 @@ public class BlobBase : MonoBehaviour
             return state;
         }
 
-        internal set
+        set
         {
             if (value == BlobState.Idle)
             {

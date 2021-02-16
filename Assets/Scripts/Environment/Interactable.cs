@@ -27,6 +27,7 @@ public class Interactable : MonoBehaviour
     public virtual void RemoveBlob(BlobBase blob)
     {
         assignedBlobs.Remove(blob);
+        blob.State = BlobState.Idle;
         if (assignedBlobs.Count < blobsNeeded)
         {
             StopInteraction();
