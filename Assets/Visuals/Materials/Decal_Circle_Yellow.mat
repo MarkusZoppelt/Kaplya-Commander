@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Decal_Circle
+  m_Name: Decal_Circle_Yellow
   m_Shader: {fileID: 4800000, guid: 4d81e2b8bbf3ae2459aaab342b867add, type: 3}
   m_ShaderKeywords: _UnityFogEnable
   m_LightmapFlags: 4

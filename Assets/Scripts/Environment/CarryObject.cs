@@ -6,21 +6,34 @@ using UnityEngine.Events;
 
 public class CarryObject : Interactable
 {
-    [SerializeField] internal PneumaticTube carryTo;
     [SerializeField] internal NavMeshAgent agent;
     [SerializeField] internal float carrySpeed = 4f;
     [SerializeField] internal UnityEvent onSuckedIntoTube;
 
+    public RoomManager Room { private get; set; }
+
     internal override void StartInteraction()
     {
-        agent.SetDestination(carryTo.transform.position);
+        if(Room == null)
+        {
+            return;
+        }
+
+        agent.SetDestination(Room.Tube.transform.position);
     }
 
     public override BlobState AssignBlob(BlobBase blob)
     {
         var state = base.AssignBlob(blob); 
         UpdateCarrySpeed();
+        blob.transform.SetParent(transform);
         return state;
+    }
+
+    public override void RemoveBlob(BlobBase blob)
+    {
+        base.RemoveBlob(blob);
+        blob.transform.SetParent(null);
     }
 
     internal void UpdateCarrySpeed()
