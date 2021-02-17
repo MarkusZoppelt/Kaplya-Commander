@@ -1,12 +1,11 @@
 using DG.Tweening;
 using UnityEngine;
 
-public class PneumaticTube : Interactable
+public class PneumaticTube : MonoBehaviour
 {
     #region Inspector
     [Header("Suck Up Settings")]
     [SerializeField] private Transform tubeOpening;
-    [SerializeField] private float suckUpHeight = 10f;
     [SerializeField] private float carryObjectShakeDuration = 1.5f;
     [SerializeField] private float carryObjectSuckUpDuration = 0.5f;
     #endregion
@@ -22,7 +21,6 @@ public class PneumaticTube : Interactable
 
     internal void SuckUp(CarryObject carryObject)
     {
-        Debug.Log("Starting suck up sequence");
         carryObject.OnSuckedIntoTube();
 
         carryObject.transform

@@ -16,6 +16,11 @@ public class CarryObject : Interactable
         agent.SetDestination(carryTo.transform.position);
     }
 
+    internal override void StopInteraction()
+    {
+        agent.SetDestination(transform.position);
+    }
+
     public override BlobState AssignBlob(BlobBase blob)
     {
         var state = base.AssignBlob(blob); 

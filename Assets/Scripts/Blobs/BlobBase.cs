@@ -77,18 +77,26 @@ public class BlobBase : MonoBehaviour
         navMeshAgent.speed = movementSpeed;
     }
 
+    public virtual bool CanBeCalled()
+    {
+        if (State == BlobState.Imprisoned || State == BlobState.Flying || State == BlobState.Following)
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    #region Orchestrate state behaviour
     internal virtual void InitializeState()
     {
         switch (State)
         {
             case BlobState.Following:
-                followOffset = Vector3.zero;
-                navMeshAgent.stoppingDistance = defaultProximity;
+                InitializeFollowing();
                 break;
             case BlobState.Carrying:
-                followOffset = currentInteractable.GetBlobOffset();
-                followTarget = currentInteractable.transform;
-                navMeshAgent.stoppingDistance = carryProximity;
+                InitializeCarrying();
                 break;
         }
     }
@@ -98,20 +106,61 @@ public class BlobBase : MonoBehaviour
         switch (State)
         {
             case BlobState.Following:
+                ExecuteFollowing();
+                break;
             case BlobState.Carrying:
-                MoveTowardsFollowTarget();
+                ExecuteCarrying();
                 break;
             default:
                 break;
         }
     }
+    #endregion
 
+    #region Following
     public virtual void StartFollowing(Transform target)
     {
         State = BlobState.Following;
         followTarget = target;
     }
 
+    internal virtual void InitializeFollowing()
+    {
+        if(currentInteractable != null)
+        {
+            currentInteractable.RemoveBlob(this);
+            currentInteractable = null;
+        }
+
+        followOffset = Vector3.zero;
+        navMeshAgent.stoppingDistance = defaultProximity;
+
+        transform.DOJump(transform.position, 0.75f, 1, 0.33f);
+    }
+
+    internal virtual void ExecuteFollowing()
+    {
+        MoveTowardsFollowTarget();
+    }
+    #endregion
+
+    #region Carrying
+    internal virtual void InitializeCarrying()
+    {
+        followOffset = currentInteractable.GetBlobOffset();
+        followTarget = currentInteractable.transform;
+        navMeshAgent.stoppingDistance = carryProximity;
+
+        transform.DOJump(transform.position, 0.75f, 1, 0.33f);
+    }
+
+    internal virtual void ExecuteCarrying()
+    {
+        MoveTowardsFollowTarget();
+    }
+    #endregion
+
+    #region Getting Thrown
     public virtual void GetThrown(Vector3 startPosition, Vector3 endPosition)
     {
         transform.position = startPosition;
@@ -143,7 +192,7 @@ public class BlobBase : MonoBehaviour
             }
 
             Interactable interactable = hit.collider.GetComponent<Interactable>();
-            if (interactable != null)
+            if (interactable != null && interactable.CanBeAssigned(this))
             {
                 nearbyInteractables.Add(interactable);
             }
@@ -164,6 +213,7 @@ public class BlobBase : MonoBehaviour
             return;
         }
     }
+    #endregion
 
     internal virtual void MoveTowardsFollowTarget()
     {

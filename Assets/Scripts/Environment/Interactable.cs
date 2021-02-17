@@ -13,6 +13,11 @@ public class Interactable : MonoBehaviour
 
     internal List<BlobBase> assignedBlobs = new List<BlobBase>();
 
+    public virtual bool CanBeAssigned(BlobBase blob)
+    {
+        return true;
+    }
+
     public virtual BlobState AssignBlob(BlobBase blob)
     {
         assignedBlobs.Add(blob);

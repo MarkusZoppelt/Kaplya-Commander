@@ -54,7 +54,7 @@ MonoBehaviour:
   interactableLayerMask:
     serializedVersion: 2
     m_Bits: 2048
-  interactionRange: 2
+  interactionRange: 3
   carryProximity: 0.5
 --- !u!195 &2652495687958098823
 NavMeshAgent:
