@@ -200,7 +200,7 @@ public class PlayerController : MonoBehaviour
             foreach(var blobHit in nearbyBlobs)
             {
                 BlobBase blob = blobHit.collider.GetComponent<BlobBase>();
-                if (blob == null || blob.State != BlobState.Idle)
+                if (blob == null || !blob.CanBeCalled())
                 {
                     continue;
                 }
