@@ -28,7 +28,7 @@ public class BaseEnemyAttack : MonoBehaviour
 
     public virtual bool CanAttack(GameObject target)
     {
-        if (range > Vector3.Distance(target.transform.position, transform.position))
+        if (range < Vector3.Distance(target.transform.position, transform.position))
             return false;
 
         var targetDirection = (target.transform.position - transform.position).normalized;

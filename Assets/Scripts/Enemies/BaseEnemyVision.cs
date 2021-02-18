@@ -10,6 +10,7 @@ public class BaseEnemyVision : MonoBehaviour
     [SerializeField] internal LayerMask layerMask;
     [SerializeField] internal LayerMask obstacleLayerMask;
     internal GameObject[] targets;
+    internal RaycastHit obstacleHit;
 
     public virtual GameObject[] AcquireTargets()
     {
@@ -21,9 +22,12 @@ public class BaseEnemyVision : MonoBehaviour
             if (hit.collider.gameObject.tag != "friendly")
                 continue;
                 
-            var targetDirection = (hit.point - transform.position).normalized;
-            if (Physics.Raycast(transform.position, targetDirection, range+1, obstacleLayerMask))
+            var targetDirection = (hit.collider.transform.position - transform.position).normalized;
+            if (Physics.Raycast(transform.position,  targetDirection, out obstacleHit, range +1, obstacleLayerMask))
+            {
+                if (Vector3.Distance(hit.collider.transform.position, transform.position) > Vector3.Distance(obstacleHit.point, transform.position))
                 continue;
+            }
 
             greatestHits.Add(hit.collider.gameObject);
         }
