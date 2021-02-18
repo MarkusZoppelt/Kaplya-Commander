@@ -7,23 +7,29 @@ using UnityEngine.Events;
 public class CarryObject : Interactable
 {
     [SerializeField] internal PneumaticTube carryTo;
-    [SerializeField] internal NavMeshAgent agent;
-    [SerializeField] internal float carrySpeed = 4f;
     [SerializeField] internal UnityEvent onSuckedIntoTube;
+    [SerializeField] internal NavMeshAgent agent;
+    [SerializeField] internal Transform meshTransform;
+    [SerializeField] internal float carrySpeed = 4f;
+    [SerializeField] internal Vector3 carryOffset;
 
     internal override void StartInteraction()
     {
+        meshTransform.position += carryOffset;
         agent.SetDestination(carryTo.transform.position);
     }
 
     internal override void StopInteraction()
     {
+        meshTransform.position -= carryOffset;
         agent.SetDestination(transform.position);
     }
 
     public override BlobState AssignBlob(BlobBase blob)
     {
-        var state = base.AssignBlob(blob); 
+        var state = base.AssignBlob(blob);
+        blob.transform.SetParent(transform);
+        blob.transform.position = transform.position + GetBlobOffset();
         UpdateCarrySpeed();
         return state;
     }
