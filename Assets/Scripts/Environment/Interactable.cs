@@ -11,6 +11,8 @@ public class Interactable : MonoBehaviour
     [SerializeField] public BlobState interactorState;
     #endregion
 
+    internal bool InteractionHasStarted { get; set; }
+
     internal List<BlobBase> assignedBlobs = new List<BlobBase>();
 
     public virtual bool CanBeAssigned(BlobBase blob)
@@ -21,7 +23,7 @@ public class Interactable : MonoBehaviour
     public virtual BlobState AssignBlob(BlobBase blob)
     {
         assignedBlobs.Add(blob);
-        if (assignedBlobs.Count >= blobsNeeded)
+        if (assignedBlobs.Count >= blobsNeeded && !InteractionHasStarted)
         {
             StartInteraction();
         }
@@ -33,7 +35,7 @@ public class Interactable : MonoBehaviour
     {
         assignedBlobs.Remove(blob);
         blob.State = BlobState.Idle;
-        if (assignedBlobs.Count < blobsNeeded)
+        if (assignedBlobs.Count < blobsNeeded && InteractionHasStarted)
         {
             StopInteraction();
         }
@@ -41,12 +43,12 @@ public class Interactable : MonoBehaviour
 
     internal virtual void StartInteraction()
     {
-        Debug.LogWarning($"StartInteraction for {gameObject.name} not implemented");
+        InteractionHasStarted = true;
     }
 
     internal virtual void StopInteraction()
     {
-        Debug.LogWarning($"StopInteraction for {gameObject.name} not implemented");
+        InteractionHasStarted = false;
     }
 
     public virtual Vector3 GetBlobOffset()

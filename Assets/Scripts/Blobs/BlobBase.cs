@@ -39,7 +39,7 @@ public class BlobBase : MonoBehaviour
 
         set
         {
-            if (value == BlobState.Idle)
+            if (value == BlobState.Idle || value == BlobState.Carrying)
             {
                 navMeshAgent.enabled = false;
             }
@@ -147,17 +147,10 @@ public class BlobBase : MonoBehaviour
     #region Carrying
     internal virtual void InitializeCarrying()
     {
-        followOffset = currentInteractable.GetBlobOffset();
-        followTarget = currentInteractable.transform;
-        navMeshAgent.stoppingDistance = carryProximity;
-
         transform.DOJump(transform.position, 0.75f, 1, 0.33f);
     }
 
-    internal virtual void ExecuteCarrying()
-    {
-        MoveTowardsFollowTarget();
-    }
+    internal virtual void ExecuteCarrying() { }
     #endregion
 
     #region Getting Thrown
