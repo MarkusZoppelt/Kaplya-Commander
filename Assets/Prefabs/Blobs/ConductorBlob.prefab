@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7908912717282585283}
   - component: {fileID: 2652495687958098823}
   - component: {fileID: 7013291689708697921}
+  - component: {fileID: 6516375516363960836}
   m_Layer: 14
   m_Name: ConductorBlob
   m_TagString: friendly
@@ -91,6 +92,22 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!114 &6516375516363960836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3517451321798508908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 283a92a89caf9f4e6ac67cd867412701, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  onDeath:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &4363933910484579757
 GameObject:
   m_ObjectHideFlags: 0
