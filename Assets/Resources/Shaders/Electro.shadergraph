@@ -98,6 +98,9 @@
         },
         {
             "m_Id": "7e998e31762d4cc4827ac575a43fb321"
+        },
+        {
+            "m_Id": "506fb1e99b6f42edae70a37cb3f7d044"
         }
     ],
     "m_GroupDatas": [],
@@ -372,6 +375,20 @@
         {
             "m_OutputSlot": {
                 "m_Node": {
+                    "m_Id": "d6218ad949a045ba976cf5ce43fc8922"
+                },
+                "m_SlotId": 0
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "506fb1e99b6f42edae70a37cb3f7d044"
+                },
+                "m_SlotId": 0
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
                     "m_Id": "eb831d06af5245b09a2ed2ec1d08e73d"
                 },
                 "m_SlotId": 0
@@ -412,6 +429,9 @@
             },
             {
                 "m_Id": "db971e9c13054469aae963bede9cee9f"
+            },
+            {
+                "m_Id": "506fb1e99b6f42edae70a37cb3f7d044"
             }
         ]
     },
@@ -1086,6 +1106,36 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.ColorRGBMaterialSlot",
+    "m_ObjectId": "4001e41788234337bdbbb0ecc4ded0aa",
+    "m_Id": 0,
+    "m_DisplayName": "Emission",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "Emission",
+    "m_StageCapability": 2,
+    "m_Value": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "m_DefaultValue": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "m_Labels": [],
+    "m_ColorMode": 1,
+    "m_DefaultColor": {
+        "r": 0.0,
+        "g": 0.0,
+        "b": 0.0,
+        "a": 1.0
+    }
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "4161a726019b4dc5b5de6670d009cea8",
     "m_Id": 0,
@@ -1291,6 +1341,39 @@
     "m_CustomColors": {
         "m_SerializableColors": []
     }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.BlockNode",
+    "m_ObjectId": "506fb1e99b6f42edae70a37cb3f7d044",
+    "m_Group": {
+        "m_Id": ""
+    },
+    "m_Name": "SurfaceDescription.Emission",
+    "m_DrawState": {
+        "m_Expanded": true,
+        "m_Position": {
+            "serializedVersion": "2",
+            "x": 0.0,
+            "y": 0.0,
+            "width": 0.0,
+            "height": 0.0
+        }
+    },
+    "m_Slots": [
+        {
+            "m_Id": "4001e41788234337bdbbb0ecc4ded0aa"
+        }
+    ],
+    "synonyms": [],
+    "m_Precision": 0,
+    "m_PreviewExpanded": true,
+    "m_PreviewMode": 0,
+    "m_CustomColors": {
+        "m_SerializableColors": []
+    },
+    "m_SerializedDescriptor": "SurfaceDescription.Emission"
 }
 
 {
@@ -2496,10 +2579,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -1014.666748046875,
-            "y": -650.6666870117188,
-            "width": 108.0,
-            "height": 34.000003814697269
+            "x": -1046.66650390625,
+            "y": -647.3333740234375,
+            "width": 107.99993133544922,
+            "height": 33.999996185302737
         }
     },
     "m_Slots": [
