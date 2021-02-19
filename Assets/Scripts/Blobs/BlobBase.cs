@@ -248,4 +248,9 @@ public class BlobBase : MonoBehaviour
             lastTargetPosition = targetPosition;
         }
     }
+
+    public virtual void OnDeath()
+    {
+        BlobManager.ForgetBlob(this);
+    }
 }

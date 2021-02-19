@@ -9,7 +9,7 @@ public class CarryObject : Interactable
     [SerializeField] internal PneumaticTube carryTo;
     [SerializeField] internal UnityEvent onSuckedIntoTube;
     [SerializeField] internal NavMeshAgent agent;
-    [SerializeField] internal Collider collider;
+    [SerializeField] internal Collider interactionCollider;
     [SerializeField] internal Transform meshTransform;
     [SerializeField] internal float carrySpeed = 4f;
     [SerializeField] internal Vector3 carryOffset;
@@ -59,7 +59,7 @@ public class CarryObject : Interactable
 
     public virtual void OnSuckedIntoTube()
     {
-        collider.enabled = false;
+        interactionCollider.enabled = false;
         foreach(var blob in assignedBlobs.ToArray())
         {
             RemoveBlob(blob);

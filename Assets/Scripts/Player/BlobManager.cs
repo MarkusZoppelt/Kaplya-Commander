@@ -35,6 +35,8 @@ public class BlobManager : MonoBehaviour
     [Header("Type Images")]
     [SerializeField] private Sprite conductorSprite;
     [SerializeField] private Sprite rockSprite;
+    [Header("Data")]
+    [SerializeField] private List<BlobBase> blobsInField = new List<BlobBase>();
 
     private Dictionary<BlobType, int> reserves;
 
@@ -98,5 +100,31 @@ public class BlobManager : MonoBehaviour
                 Debug.LogWarning("Trying to access unknown blob type sprite of type " + type.ToString());
                 return null;
         }
+    }
+
+    public static void RememberBlob(BlobBase blob)
+    {
+        instance.blobsInField.Add(blob);
+    }
+
+    public static void ForgetBlob(BlobBase blob)
+    {
+        instance.blobsInField.Remove(blob);
+    }
+
+    public static void CallAllBlobsToTube(PneumaticTube tube)
+    {
+        foreach(var blob in instance.blobsInField)
+        {
+            blob.StartFollowing(tube.transform);
+            blob.State = BlobState.GoingToTube;
+        }
+
+        instance.blobsInField.Clear();
+    }
+
+    public static int GetBlobsInFieldCount()
+    {
+        return instance.blobsInField.Count;
     }
 }

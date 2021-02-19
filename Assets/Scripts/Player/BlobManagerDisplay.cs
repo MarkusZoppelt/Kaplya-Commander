@@ -67,7 +67,8 @@ public class BlobManagerDisplay : MonoBehaviour
 
     public void SwitchBlobType()
     {
-        BlobManager.AddBlobsToReserve(player.CurrentFollowerAmount, currentBlobType);
+        BlobManager.AddBlobsToReserve(BlobManager.GetBlobsInFieldCount(), currentBlobType);
+        BlobManager.CallAllBlobsToTube(tube);
         player.SendAllBlobsToTube(tube);
         currentBlobType = (BlobType) (((int)currentBlobType + 1) % Enum.GetNames(typeof(BlobType)).Length);
         player.CurrentBlobType = currentBlobType;

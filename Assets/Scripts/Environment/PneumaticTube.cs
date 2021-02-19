@@ -27,6 +27,7 @@ public class PneumaticTube : MonoBehaviour
         if (blob != null && blob.State == BlobState.GoingToTube)
         {
             SuckUp(blob.transform);
+            BlobManager.ForgetBlob(blob);
             return;
         }
 
@@ -78,6 +79,7 @@ public class PneumaticTube : MonoBehaviour
         blob.transform.DOScale(1f, carryObjectSuckUpDuration).SetEase(Ease.OutExpo)
             .OnComplete(() =>
             {
+                BlobManager.RememberBlob(blob);
                 player.AddBlobToFollowers(blob);
                 callback?.Invoke();
             });

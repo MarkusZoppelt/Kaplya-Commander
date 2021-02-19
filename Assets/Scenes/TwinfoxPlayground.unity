@@ -2274,6 +2274,18 @@ Transform:
   m_Father: {fileID: 1931961663}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: -96.633, z: 0}
+--- !u!114 &334286740 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7908912717282585283, guid: 967598139ad4b0041ab1175dfbf327d3,
+    type: 3}
+  m_PrefabInstance: {fileID: 1142550744}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1aa82cd8181c4841a645f53f207270b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!43 &412938065
 Mesh:
   m_ObjectHideFlags: 0
@@ -2438,6 +2450,18 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!114 &431482979 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7908912717282585283, guid: 967598139ad4b0041ab1175dfbf327d3,
+    type: 3}
+  m_PrefabInstance: {fileID: 908097251}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1aa82cd8181c4841a645f53f207270b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &516564410
 GameObject:
   m_ObjectHideFlags: 0
@@ -3156,6 +3180,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   agent: {fileID: 592291768}
+  interactionCollider: {fileID: 0}
   meshTransform: {fileID: 834061406}
   carrySpeed: 4
   carryOffset: {x: 0, y: 0, z: 0}
@@ -3799,6 +3824,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 967598139ad4b0041ab1175dfbf327d3, type: 3}
+--- !u!114 &964498477 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7908912717282585283, guid: 967598139ad4b0041ab1175dfbf327d3,
+    type: 3}
+  m_PrefabInstance: {fileID: 1266107270}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1aa82cd8181c4841a645f53f207270b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!43 &1109149123
 Mesh:
   m_ObjectHideFlags: 0
@@ -4117,6 +4154,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1189574457 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7908912717282585283, guid: 967598139ad4b0041ab1175dfbf327d3,
+    type: 3}
+  m_PrefabInstance: {fileID: 871106702464939654}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1aa82cd8181c4841a645f53f207270b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1266107270
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5971,7 +6020,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1547673381}
-  m_LocalRotation: {x: 0.2832416, y: 0.000000041955047, z: -0.000000012390838, w: 0.95904857}
+  m_LocalRotation: {x: 0.28324163, y: -0.000000041955037, z: 0.000000012390835, w: 0.95904857}
   m_LocalPosition: {x: 6.47, y: 14, z: -41.89}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -6291,6 +6340,18 @@ Transform:
   m_Father: {fileID: 1931961663}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: -88.337006, z: 0}
+--- !u!114 &1763424545 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7908912717282585283, guid: 967598139ad4b0041ab1175dfbf327d3,
+    type: 3}
+  m_PrefabInstance: {fileID: 699859438}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1aa82cd8181c4841a645f53f207270b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!43 &1772485757
 Mesh:
   m_ObjectHideFlags: 0
@@ -7414,17 +7475,17 @@ PrefabInstance:
     - target: {fileID: 7218107639388593159, guid: 0960b8914c87ece48b8f36b84eb966cf,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.28324163
+      value: 0.28324166
       objectReference: {fileID: 0}
     - target: {fileID: 7218107639388593159, guid: 0960b8914c87ece48b8f36b84eb966cf,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.0000000112418315
+      value: -0.000000030713217
       objectReference: {fileID: 0}
     - target: {fileID: 7218107639388593159, guid: 0960b8914c87ece48b8f36b84eb966cf,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.000000003320118
+      value: 0.000000009070722
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0960b8914c87ece48b8f36b84eb966cf, type: 3}
@@ -7564,6 +7625,36 @@ PrefabInstance:
       propertyPath: m_Name
       value: BlobManager
       objectReference: {fileID: 0}
+    - target: {fileID: 7692249678008426367, guid: 75bab537e7e5e064ea445cd9a85f3e6c,
+        type: 3}
+      propertyPath: blobsInField.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7692249678008426367, guid: 75bab537e7e5e064ea445cd9a85f3e6c,
+        type: 3}
+      propertyPath: blobsInField.Array.data[0]
+      value: 
+      objectReference: {fileID: 1189574457}
+    - target: {fileID: 7692249678008426367, guid: 75bab537e7e5e064ea445cd9a85f3e6c,
+        type: 3}
+      propertyPath: blobsInField.Array.data[1]
+      value: 
+      objectReference: {fileID: 431482979}
+    - target: {fileID: 7692249678008426367, guid: 75bab537e7e5e064ea445cd9a85f3e6c,
+        type: 3}
+      propertyPath: blobsInField.Array.data[2]
+      value: 
+      objectReference: {fileID: 1763424545}
+    - target: {fileID: 7692249678008426367, guid: 75bab537e7e5e064ea445cd9a85f3e6c,
+        type: 3}
+      propertyPath: blobsInField.Array.data[3]
+      value: 
+      objectReference: {fileID: 334286740}
+    - target: {fileID: 7692249678008426367, guid: 75bab537e7e5e064ea445cd9a85f3e6c,
+        type: 3}
+      propertyPath: blobsInField.Array.data[4]
+      value: 
+      objectReference: {fileID: 964498477}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75bab537e7e5e064ea445cd9a85f3e6c, type: 3}
 --- !u!1001 &7766804614800185531
