@@ -21,7 +21,6 @@ public class BaseEnemyAttack : MonoBehaviour
         if (coolDownTime > 0)
             return;
         
-        Debug.Log("This is bad");
         target.TakeDamage(damage);
         coolDownTime = timeBetweenAttacks;
     }
