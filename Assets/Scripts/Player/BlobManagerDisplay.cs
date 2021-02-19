@@ -15,18 +15,12 @@ public class BlobManagerDisplay : MonoBehaviour
     [SerializeField] private Button switchButton;
     [SerializeField] private Button plusButton;
     [SerializeField] private Button minusButton;
+    [SerializeField] private Button closeButton;
     [Header("References - Scene")]
     [SerializeField] private PneumaticTube tube;
 
     private PlayerController player;
     private BlobType currentBlobType;
-
-    private void Awake()
-    {
-        switchButton.onClick.AddListener(SwitchBlobType);
-        plusButton.onClick.AddListener(AddBlob);
-        minusButton.onClick.AddListener(RemoveBlob);
-    }
 
     private void Update()
     {
@@ -39,13 +33,19 @@ public class BlobManagerDisplay : MonoBehaviour
     {
         canvas.worldCamera = Camera.main;
         this.player = player;
+        player.IsInMenu = true;
         currentBlobType = player.CurrentBlobType;
         UpdateButtons();
     }
 
+    public void Deactivate()
+    {
+        player.IsInMenu = false;
+        gameObject.SetActive(false);
+    }
+
     private void UpdateButtons()
     {
-        // TODO check if buttons should be pressable
         if (BlobManager.HasReserves(currentBlobType) && player.CurrentFollowerAmount < player.MaxFollowers)
         {
             plusButton.interactable = true;
@@ -67,6 +67,8 @@ public class BlobManagerDisplay : MonoBehaviour
 
     public void SwitchBlobType()
     {
+        BlobManager.AddBlobsToReserve(player.CurrentFollowerAmount, currentBlobType);
+        player.SendAllBlobsToTube(tube);
         currentBlobType = (BlobType) (((int)currentBlobType + 1) % Enum.GetNames(typeof(BlobType)).Length);
         player.CurrentBlobType = currentBlobType;
         UpdateButtons();
@@ -83,6 +85,7 @@ public class BlobManagerDisplay : MonoBehaviour
     public void RemoveBlob()
     {
         player.SendBlobToTube(tube);
+        BlobManager.AddBlobsToReserve(1, currentBlobType);
         UpdateButtons();
     }
 }

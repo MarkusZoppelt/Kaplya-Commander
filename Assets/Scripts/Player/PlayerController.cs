@@ -73,6 +73,25 @@ public class PlayerController : MonoBehaviour
     public int MaxFollowers { get { return maxFollowers; } }
     public int CurrentFollowerAmount { get { return followingBlobs.Count; } }
 
+    private bool isInMenu;
+    public bool IsInMenu 
+    {
+        get
+        {
+            return isInMenu;
+        }
+
+        set
+        {
+            if (value)
+            {
+                movementDirection = Vector3.zero;
+            }
+
+            isInMenu = value;
+        }
+    }
+
     #region Unity Methods
     private void Awake()
     {
@@ -89,12 +108,22 @@ public class PlayerController : MonoBehaviour
     #region Input Events
     public void OnMovement(InputAction.CallbackContext context)
     {
+        if (IsInMenu)
+        {
+            return;
+        }
+
         Vector2 inputMovement = context.ReadValue<Vector2>();
         movementDirection = new Vector3(inputMovement.x, 0f, inputMovement.y);
     }
 
     public void OnTargetedAction(InputAction.CallbackContext context)
     {
+        if (IsInMenu)
+        {
+            return;
+        }
+
         // TODO: Here we should also somehow determine the screen position for a touch...
         if (context.action.phase == InputActionPhase.Started)
         {
@@ -241,6 +270,14 @@ public class PlayerController : MonoBehaviour
         followingBlobs.Add(blob);
     }
 
+    public void SendAllBlobsToTube(PneumaticTube tube)
+    {
+        while(CurrentFollowerAmount > 0)
+        {
+            SendBlobToTube(tube);
+        }
+    }
+
     public void SendBlobToTube(PneumaticTube tube)
     {
         if (followingBlobs.Count <= 0)
@@ -252,6 +289,7 @@ public class PlayerController : MonoBehaviour
         followingBlobs.Remove(blob);
 
         blob.StartFollowing(tube.transform);
+        blob.State = BlobState.GoingToTube;
     }
 
     private void StartThrowingBlobs()

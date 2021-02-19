@@ -39,16 +39,6 @@ public class PneumaticTube : MonoBehaviour
         }
     }
 
-    internal void OnTriggerExit(Collider other)
-    {
-        var player = other.GetComponent<PlayerController>();
-        if (player != null)
-        {
-            managerDisplay.gameObject.SetActive(false);
-            return;
-        }
-    }
-
     internal void SuckUp(CarryObject carryObject)
     {
         carryObject.OnSuckedIntoTube();
