@@ -6,6 +6,7 @@ public class Interactable : MonoBehaviour
 {
     #region Inspector
     [Header("Base Interactable")]
+    [SerializeField] internal InteractableDisplay display;
     [SerializeField] internal int blobsNeeded;
     [SerializeField] internal float radius;
     [SerializeField] public BlobState interactorState;
@@ -15,6 +16,11 @@ public class Interactable : MonoBehaviour
 
     internal List<BlobBase> assignedBlobs = new List<BlobBase>();
 
+    internal void Awake()
+    {
+        display.NeededBlobs = blobsNeeded;
+    }
+
     public virtual bool CanBeAssigned(BlobBase blob)
     {
         return true;
@@ -23,6 +29,7 @@ public class Interactable : MonoBehaviour
     public virtual BlobState AssignBlob(BlobBase blob)
     {
         assignedBlobs.Add(blob);
+        display.AssignedBlobs = assignedBlobs.Count;
         if (assignedBlobs.Count >= blobsNeeded && !InteractionHasStarted)
         {
             StartInteraction();
@@ -34,6 +41,7 @@ public class Interactable : MonoBehaviour
     public virtual void RemoveBlob(BlobBase blob)
     {
         assignedBlobs.Remove(blob);
+        display.AssignedBlobs = assignedBlobs.Count;
         blob.State = BlobState.Idle;
         if (assignedBlobs.Count < blobsNeeded && InteractionHasStarted)
         {
