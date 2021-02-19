@@ -59,7 +59,7 @@ public class Interactable : MonoBehaviour
         InteractionHasStarted = false;
     }
 
-    public virtual Vector3 GetBlobOffset()
+    public virtual Vector3 GetBlobOffset(BlobBase blob)
     {
         float angle = assignedBlobs.Count * Mathf.PI * 2f / blobsNeeded;
         return new Vector3(Mathf.Cos(angle) * radius, 0, Mathf.Sin(angle) * radius);
