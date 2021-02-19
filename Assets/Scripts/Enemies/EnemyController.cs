@@ -11,7 +11,7 @@ public enum EnemyActionState
 
 public class EnemyController : MonoBehaviour
 {
-    [SerializeField] internal BaseEnemyAttack attack;
+    [SerializeField] internal TurretEnemyAttack attack;
     [SerializeField] internal BaseEnemyMovement movement;
     [SerializeField] internal BaseEnemyVision vision;
     internal GameObject[] targets;
@@ -24,6 +24,8 @@ public class EnemyController : MonoBehaviour
         
         if (targets.Length < 1)
             return;
+
+        Debug.Log("Found targets");
         
         var movementPosition = movement.CalculateTargetPosition(targets);
         movement.MoveTowards(movementPosition);
@@ -31,6 +33,8 @@ public class EnemyController : MonoBehaviour
         var tar = attack.CalculateTarget(targets);
         if (tar == null)
             return;
+
+        Debug.Log("Attacking Target");
         attack.Attack(tar);
     }
 }

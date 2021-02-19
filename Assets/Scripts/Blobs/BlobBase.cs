@@ -11,7 +11,8 @@ public enum BlobState
     Flying,
     Following,
     Carrying,
-    Fighting
+    Fighting,
+    Interacting
 }
 
 public class BlobBase : MonoBehaviour
@@ -98,6 +99,9 @@ public class BlobBase : MonoBehaviour
             case BlobState.Carrying:
                 InitializeCarrying();
                 break;
+            case BlobState.Interacting:
+                InitializeInteracting();
+                break;
         }
     }
 
@@ -110,6 +114,9 @@ public class BlobBase : MonoBehaviour
                 break;
             case BlobState.Carrying:
                 ExecuteCarrying();
+                break;
+            case BlobState.Interacting:
+                ExecuteInteracting();
                 break;
             default:
                 break;
@@ -151,6 +158,27 @@ public class BlobBase : MonoBehaviour
     }
 
     internal virtual void ExecuteCarrying() { }
+    #endregion
+
+    #region Interacting
+    public virtual void StartInteracting(Interactable target)
+    {
+        State = BlobState.Interacting;
+        currentInteractable = target;
+    }
+
+    internal virtual void InitializeInteracting()
+    {
+        followTarget = currentInteractable.transform;
+        followOffset = currentInteractable.GetBlobOffset();
+
+        transform.DOJump(transform.position, 0.75f, 1, 0.33f);
+    }
+
+    internal virtual void ExecuteInteracting()
+    {
+        MoveTowardsFollowTarget();
+    }
     #endregion
 
     #region Getting Thrown

@@ -15,12 +15,14 @@ public class CarryObject : Interactable
 
     internal override void StartInteraction()
     {
+        base.StartInteraction();
         meshTransform.position += carryOffset;
         agent.SetDestination(carryTo.transform.position);
     }
 
     internal override void StopInteraction()
     {
+        base.StopInteraction();
         meshTransform.position -= carryOffset;
         agent.SetDestination(transform.position);
     }
