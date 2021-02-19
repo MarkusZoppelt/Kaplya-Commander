@@ -170,7 +170,7 @@ public class BlobBase : MonoBehaviour
     internal virtual void InitializeInteracting()
     {
         followTarget = currentInteractable.transform;
-        followOffset = currentInteractable.GetBlobOffset();
+        followOffset = currentInteractable.GetBlobOffset(this);
 
         transform.DOJump(transform.position, 0.75f, 1, 0.33f);
     }

@@ -28,7 +28,7 @@ public class GiantButton : Interactable
         return state;
     }
 
-    public override Vector3 GetBlobOffset()
+    public override Vector3 GetBlobOffset(BlobBase blob)
     {
         float angle = assignedBlobs.Count * Mathf.PI * 2f / blobsNeeded;
         float distanceToCenter = Random.Range(0f, radius);

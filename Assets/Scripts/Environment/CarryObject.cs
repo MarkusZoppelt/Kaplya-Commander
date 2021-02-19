@@ -31,7 +31,7 @@ public class CarryObject : Interactable
     {
         var state = base.AssignBlob(blob);
         blob.transform.SetParent(transform);
-        blob.transform.position = transform.position + GetBlobOffset();
+        blob.transform.position = transform.position + GetBlobOffset(blob);
         UpdateCarrySpeed();
         return state;
     }
