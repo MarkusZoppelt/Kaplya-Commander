@@ -58,6 +58,7 @@ public class CarryObject : Interactable
         {
             RemoveBlob(blob);
         }
+        display.gameObject.SetActive(false);
         onSuckedIntoTube?.Invoke();
     }
 }
