@@ -53,6 +53,25 @@ public class PlayerController : MonoBehaviour
     // Throwing blobs
     private Vector3 throwTargetPosition;
     private List<BlobBase> followingBlobs;
+    private BlobType currentBlobType;
+
+    public BlobType CurrentBlobType
+    {
+        get { return currentBlobType; }
+        set
+        {
+            if (currentBlobType == value)
+            {
+                return;
+            }
+
+            currentBlobType = value;
+            // TODO send back all current blobs
+        }
+    }
+
+    public int MaxFollowers { get { return maxFollowers; } }
+    public int CurrentFollowerAmount { get { return followingBlobs.Count; } }
 
     #region Unity Methods
     private void Awake()
@@ -207,14 +226,32 @@ public class PlayerController : MonoBehaviour
 
                 if (followingBlobs.Count < maxFollowers)
                 {
-                    blob.StartFollowing(followerTarget);
-                    followingBlobs.Add(blob);
+                    AddBlobToFollowers(blob);
                 }
             }
 
             callIndicator.transform.localScale = new Vector3(callRange, callRange, callRange);
             yield return null;
         }
+    }
+
+    public void AddBlobToFollowers(BlobBase blob)
+    {
+        blob.StartFollowing(followerTarget);
+        followingBlobs.Add(blob);
+    }
+
+    public void SendBlobToTube(PneumaticTube tube)
+    {
+        if (followingBlobs.Count <= 0)
+        {
+            return;
+        }
+
+        BlobBase blob = followingBlobs.First();
+        followingBlobs.Remove(blob);
+
+        blob.StartFollowing(tube.transform);
     }
 
     private void StartThrowingBlobs()

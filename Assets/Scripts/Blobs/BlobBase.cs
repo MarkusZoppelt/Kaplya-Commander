@@ -12,7 +12,8 @@ public enum BlobState
     Following,
     Carrying,
     Fighting,
-    Interacting
+    Interacting,
+    GoingToTube
 }
 
 public class BlobBase : MonoBehaviour
@@ -80,7 +81,7 @@ public class BlobBase : MonoBehaviour
 
     public virtual bool CanBeCalled()
     {
-        if (State == BlobState.Imprisoned || State == BlobState.Flying || State == BlobState.Following)
+        if (State == BlobState.Imprisoned || State == BlobState.Flying || State == BlobState.Following || State == BlobState.GoingToTube)
         {
             return false;
         }
@@ -93,6 +94,7 @@ public class BlobBase : MonoBehaviour
     {
         switch (State)
         {
+            case BlobState.GoingToTube:
             case BlobState.Following:
                 InitializeFollowing();
                 break;
@@ -109,6 +111,7 @@ public class BlobBase : MonoBehaviour
     {
         switch (State)
         {
+            case BlobState.GoingToTube:
             case BlobState.Following:
                 ExecuteFollowing();
                 break;
