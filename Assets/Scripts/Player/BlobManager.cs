@@ -47,6 +47,7 @@ public class BlobManager : MonoBehaviour
 
     public static void AddBlobsToReserve(int amount, BlobType type)
     {
+        Debug.Log($"Adding {amount} of {type} to reserves");
         instance.reserves[type] += amount;
     }
 

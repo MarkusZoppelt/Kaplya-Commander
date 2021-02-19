@@ -16,7 +16,7 @@ public class Interactable : MonoBehaviour
 
     internal List<BlobBase> assignedBlobs = new List<BlobBase>();
 
-    internal void Awake()
+    internal virtual void Awake()
     {
         display.NeededBlobs = blobsNeeded;
     }
