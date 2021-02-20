@@ -66,7 +66,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   idleSound: {fileID: 8300000, guid: 506a7d124095a5644b169ef7636ff103, type: 3}
-  timeBetweenSounds: 8
+  timeBetweenSounds: 6
 --- !u!1102 &-6836975068550085437
 AnimatorState:
   serializedVersion: 6
