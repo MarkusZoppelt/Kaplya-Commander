@@ -28,7 +28,6 @@ public class BlobBase : MonoBehaviour
     [Header("Base Interaction")]
     [SerializeField] private LayerMask interactableLayerMask;
     [SerializeField] private float interactionRange = 3f;
-    [SerializeField] private float carryProximity = 0.1f;
     [Header("Fighting")]
     [SerializeField] private float damagePerAttack = 5f;
     [SerializeField] private float attackRange = 1f;

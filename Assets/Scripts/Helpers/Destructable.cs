@@ -9,7 +9,7 @@ public class DeathEvent : UnityEvent<GameObject> { }
 public class Destructable: MonoBehaviour
 {
     [SerializeField] private float maxHealth;
-    [SerializeField] private DeathEvent onDeath;
+    [SerializeField] public DeathEvent onDeath;
     public float CurrentHealth { get; private set; }
     public float MaxHealth { get { return maxHealth; } }
 

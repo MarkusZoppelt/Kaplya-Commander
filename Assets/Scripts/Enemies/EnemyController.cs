@@ -18,6 +18,12 @@ public class EnemyController : Interactable
     internal GameObject[] targets;
 
     public EnemyActionState State { get; internal set; }
+
+    internal override void Awake()
+    {
+        base.Awake();
+        destructable.onDeath.AddListener((self) => OnDeath(self));
+    }
     
     private void Update()
     {
@@ -42,5 +48,13 @@ public class EnemyController : Interactable
         var state = base.AssignBlob(blob);
         blob.StartFighting(destructable);
         return state;
+    }
+
+    private void OnDeath(GameObject self)
+    {
+        foreach(var blob in assignedBlobs.ToArray())
+        {
+            RemoveBlob(blob);
+        }
     }
 }
