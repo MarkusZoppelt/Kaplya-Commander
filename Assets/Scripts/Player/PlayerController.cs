@@ -33,6 +33,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask blobLayerMask;
     [SerializeField] private Transform followerTarget;
     [SerializeField] private int maxFollowers = 20;
+    [Header("Visuals")]
+    [SerializeField] private SpriteRenderer playerSprite;
+    [SerializeField] private Animator playerAnimator;
     #endregion
 
     // Current player state
@@ -148,12 +151,20 @@ public class PlayerController : MonoBehaviour
     {
         if (state != PlayerActionState.NoAction || movementDirection.magnitude < 0.1f)
         {
+            playerAnimator.SetBool("isWalking", false);
             return;
         }
 
+        playerAnimator.SetBool("isWalking", true);
         Vector3 movement = movementDirection * speed * Time.deltaTime;
         movement.y = gravity;
         controller.Move(movement);
+
+        if(movementDirection.x < 0) {
+            playerSprite.flipX = true;
+        } else {
+            playerSprite.flipX = false;
+        }
 
         float targetAngle = Mathf.Atan2(movementDirection.x, movementDirection.z) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0f, targetAngle, 0f);
@@ -232,6 +243,7 @@ public class PlayerController : MonoBehaviour
         StopCurrentAction();
         state = PlayerActionState.CallingBack;
         callIndicator.SetActive(true);
+        playerAnimator.SetTrigger("Recall");
         currentActionRoutine = StartCoroutine(CallBlobsBack());
     }
 
@@ -313,6 +325,8 @@ public class PlayerController : MonoBehaviour
             {
                 yield return null;
             }
+
+            playerAnimator.SetTrigger("Fire");
 
             BlobBase blob = followingBlobs.First();
             followingBlobs.Remove(blob);
