@@ -7,12 +7,10 @@ public class TurretEnemyAttack : BaseEnemyAttack
     [SerializeField] internal Bullet bulletPrefab;
     [SerializeField] internal Transform muzzle;
     [SerializeField] internal float bulletSpeed;
-    internal float coolDownTime;
 
-    public void Update()
+    new public void Update()
     {
-        if (coolDownTime > 0)
-            coolDownTime -= Time.deltaTime;
+        base.Update();
     }
 
     public override void Attack(Destructable target)

@@ -13,9 +13,9 @@ public class Bullet : MonoBehaviour
         transform.position += (Time.deltaTime * direction * speed);
     }
 
-    public void OnTriggerEnter(Collider coll)
+    private void OnCollisionEnter(Collision collision)
     {
-        var hitTarget = coll.GetComponent<Destructable>();
+        var hitTarget = collision.collider.GetComponent<Destructable>();
         if (hitTarget)
             hitTarget.TakeDamage(damage);
 

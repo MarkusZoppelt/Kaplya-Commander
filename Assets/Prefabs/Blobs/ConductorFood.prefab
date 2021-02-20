@@ -56,7 +56,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   agent: {fileID: 494922864926431933}
-  collider: {fileID: 494922864926431934}
+  interactionCollider: {fileID: 494922864926431934}
   meshTransform: {fileID: 494922864964326534}
   carrySpeed: 4
   carryOffset: {x: 0, y: 0.5, z: 0}

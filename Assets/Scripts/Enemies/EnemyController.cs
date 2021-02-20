@@ -11,7 +11,7 @@ public enum EnemyActionState
 
 public class EnemyController : MonoBehaviour
 {
-    [SerializeField] internal TurretEnemyAttack attack;
+    [SerializeField] internal BaseEnemyAttack attack;
     [SerializeField] internal BaseEnemyMovement movement;
     [SerializeField] internal BaseEnemyVision vision;
     internal GameObject[] targets;
