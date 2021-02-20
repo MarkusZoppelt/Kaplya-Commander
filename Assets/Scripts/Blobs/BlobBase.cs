@@ -32,6 +32,9 @@ public class BlobBase : MonoBehaviour
     [SerializeField] private float damagePerAttack = 5f;
     [SerializeField] private float attackRange = 1f;
     [SerializeField] private float timeBetweenAttacks = 1f;
+    [Header("Visuals")]
+    [SerializeField] private SpriteRenderer blobSprite;
+    [SerializeField] private Animator blobAnimator;
     #endregion
 
     internal BlobState state;
@@ -68,6 +71,8 @@ public class BlobBase : MonoBehaviour
     private Destructable targetDestructable;
     private float attackCoolDown = 0f;
 
+    
+
     #region Unity methods
     internal virtual void Awake()
     {
@@ -99,6 +104,9 @@ public class BlobBase : MonoBehaviour
     #region Orchestrate state behaviour
     internal virtual void InitializeState()
     {
+        blobAnimator.SetBool("isCarrying", false);
+        blobAnimator.SetBool("isWalking", false);
+        blobAnimator.SetBool("specialActive", false);
         switch (State)
         {
             case BlobState.GoingToTube:
@@ -159,6 +167,7 @@ public class BlobBase : MonoBehaviour
         navMeshAgent.stoppingDistance = defaultProximity;
 
         transform.DOJump(transform.position, 0.75f, 1, 0.33f);
+        blobAnimator.SetBool("isWalking", true);
     }
 
     internal virtual void ExecuteFollowing()
@@ -170,6 +179,7 @@ public class BlobBase : MonoBehaviour
     #region Carrying
     internal virtual void InitializeCarrying()
     {
+        blobAnimator.SetBool("isCarrying", true);
         transform.DOJump(transform.position, 0.75f, 1, 0.33f);
     }
 
@@ -180,6 +190,7 @@ public class BlobBase : MonoBehaviour
     public virtual void StartInteracting(Interactable target)
     {
         State = BlobState.Interacting;
+        blobAnimator.SetBool("specialActive", true);
         currentInteractable = target;
     }
 
@@ -220,6 +231,7 @@ public class BlobBase : MonoBehaviour
 
     internal virtual void Attack()
     {
+        blobAnimator.SetTrigger("Attack");
         attackCoolDown -= Time.deltaTime;
         if (!CanAttack())
         {
@@ -251,6 +263,7 @@ public class BlobBase : MonoBehaviour
     {
         transform.position = startPosition;
         State = BlobState.Flying;
+        blobAnimator.SetBool("isFlying", true);
 
         float duration = Vector3.Distance(startPosition, endPosition) / throwSpeed;
         transform.DOJump(endPosition, throwHeight, 1, duration).OnComplete(OnLanding);
@@ -259,6 +272,7 @@ public class BlobBase : MonoBehaviour
     public virtual void OnLanding()
     {
         State = BlobState.Idle;
+        blobAnimator.SetBool("isFlying", false);
         SearchInteractables();
     }
 
@@ -306,6 +320,11 @@ public class BlobBase : MonoBehaviour
     internal virtual void MoveTowardsFollowTarget()
     {
         Vector3 targetPosition = followTarget.position + followOffset;
+        if(targetPosition.x < transform.position.x) {
+            blobSprite.flipX = true;
+        } else {
+            blobSprite.flipX = false;
+        }
         if(targetPosition != lastTargetPosition)
         {
             navMeshAgent.SetDestination(targetPosition);
@@ -315,6 +334,7 @@ public class BlobBase : MonoBehaviour
 
     public virtual void OnDeath()
     {
+        blobAnimator.SetBool("isDead", true);
         BlobManager.ForgetBlob(this);
         currentInteractable?.RemoveBlob(this);
         controller.RemoveBlobFromFollowers(this);
