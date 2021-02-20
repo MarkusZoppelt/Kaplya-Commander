@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 6516375516363960836}
   - component: {fileID: 5487539184361535666}
   - component: {fileID: 8676692057423326624}
+  - component: {fileID: 711461839605834708}
   m_Layer: 14
   m_Name: RockBlob
   m_TagString: friendly
@@ -61,9 +62,9 @@ MonoBehaviour:
   damagePerAttack: 5
   attackRange: 1
   timeBetweenAttacks: 1
-  controller: {fileID: 0}
   blobSprite: {fileID: 602866768549992573}
   blobAnimator: {fileID: 602866768549992574}
+  controller: {fileID: 0}
 --- !u!195 &2652495687958098823
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -127,6 +128,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 711461839605834708}
+        m_TargetAssemblyTypeName: CorpseSpawner, Assembly-CSharp
+        m_MethodName: SpawnCorpse
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!54 &5487539184361535666
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -155,6 +168,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef914492a5f20694595cc66c65bb5e9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &711461839605834708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3517451321798508908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddb04c5a4a3b67d4b9bc1bf9991fb06e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spritePrefab: {fileID: 2436626109504947162, guid: 6678d6bf1ed205749b4f1a2243a2fea2,
+    type: 3}
+  offset: {x: 0, y: 0.71, z: 0}
 --- !u!1001 &2994175395990035365
 PrefabInstance:
   m_ObjectHideFlags: 0
