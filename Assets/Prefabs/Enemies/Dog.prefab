@@ -73,6 +73,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a10e61dd1ccfa251840e6aec6d8ca09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audio: {fileID: 1008179693873539083}
   damage: 100
   range: 2
   timeBetweenAttacks: 5
@@ -206,6 +207,8 @@ MonoBehaviour:
   spritePrefab: {fileID: 7657203867440398347, guid: 6b0f42567ef32ff4d82809f0ac7b210f,
     type: 3}
   offset: {x: 0, y: 2.37, z: 0}
+  deathSounds:
+  - {fileID: 8300000, guid: 636d37ac5397cba4389130fc45140ea7, type: 3}
 --- !u!1001 &4767621773477030398
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -213,6 +216,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 99336808419771541}
     m_Modifications:
+    - target: {fileID: 5752284923576451573, guid: 6b0f42567ef32ff4d82809f0ac7b210f,
+        type: 3}
+      propertyPath: rolloffMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7657203867440398345, guid: 6b0f42567ef32ff4d82809f0ac7b210f,
         type: 3}
       propertyPath: m_RootOrder
@@ -222,11 +230,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7657203867440398345, guid: 6b0f42567ef32ff4d82809f0ac7b210f,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2.33
       objectReference: {fileID: 0}
     - target: {fileID: 7657203867440398345, guid: 6b0f42567ef32ff4d82809f0ac7b210f,
         type: 3}
@@ -290,6 +293,12 @@ SpriteRenderer:
 --- !u!95 &2912180684611938792 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 7657203867440398358, guid: 6b0f42567ef32ff4d82809f0ac7b210f,
+    type: 3}
+  m_PrefabInstance: {fileID: 4767621773477030398}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &1008179693873539083 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 5752284923576451573, guid: 6b0f42567ef32ff4d82809f0ac7b210f,
     type: 3}
   m_PrefabInstance: {fileID: 4767621773477030398}
   m_PrefabAsset: {fileID: 0}
@@ -428,7 +437,7 @@ PrefabInstance:
     - target: {fileID: 5000748360031385455, guid: 69ff176740b09124781f0feeb5420986,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 4
+      value: 4.45
       objectReference: {fileID: 0}
     - target: {fileID: 5000748360031385455, guid: 69ff176740b09124781f0feeb5420986,
         type: 3}
