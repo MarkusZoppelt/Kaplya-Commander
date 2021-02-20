@@ -325,6 +325,7 @@ GameObject:
   - component: {fileID: 2724689529060742304}
   - component: {fileID: 1329807207281212626}
   - component: {fileID: 2579372599589435262}
+  - component: {fileID: 4508286994318809771}
   m_Layer: 11
   m_Name: Turret
   m_TagString: Untagged
@@ -464,7 +465,19 @@ MonoBehaviour:
   maxHealth: 250
   onDeath:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4508286994318809771}
+        m_TargetAssemblyTypeName: CorpseSpawner, Assembly-CSharp
+        m_MethodName: SpawnCorpse
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!65 &1329807207281212626
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -575,6 +588,25 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &4508286994318809771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8946644409798995548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddb04c5a4a3b67d4b9bc1bf9991fb06e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spritePrefab: {fileID: 7689812284460605018, guid: cb39e10570ec5f5419b647568a2f1e1d,
+    type: 3}
+  offset: {x: 0, y: 0, z: 0}
+  deathSounds:
+  - {fileID: 8300000, guid: 73f7b02af1d0d444ea2e721d891739bf, type: 3}
+  particlePrefab: {fileID: 4673170417486590158, guid: 0ecc09e2403b5b14e8cf581163b3dfad,
+    type: 3}
 --- !u!1001 &395383104717353794
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -75,10 +75,6 @@ MonoBehaviour:
   fightSounds:
   - {fileID: 8300000, guid: fad3bb34759eacb41a6c6f293230faee, type: 3}
   - {fileID: 8300000, guid: 0e569673c10df33418bc767f815bba1f, type: 3}
-  deathSounds:
-  - {fileID: 8300000, guid: 2d63655c3a089ef4296c1498e1711f39, type: 3}
-  - {fileID: 8300000, guid: b4c94fd8d48c3894690a8296f21767b6, type: 3}
-  - {fileID: 8300000, guid: b2a8d7b2057f13447b98f870da024770, type: 3}
   carrySounds:
   - {fileID: 8300000, guid: 635abedc0da0b2b4ca92548fadd802dd, type: 3}
   - {fileID: 8300000, guid: 957aba39e8290f1479ab304ec85f28ad, type: 3}
@@ -206,6 +202,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 2d63655c3a089ef4296c1498e1711f39, type: 3}
   - {fileID: 8300000, guid: b4c94fd8d48c3894690a8296f21767b6, type: 3}
   - {fileID: 8300000, guid: b2a8d7b2057f13447b98f870da024770, type: 3}
+  particlePrefab: {fileID: 6553195268177453954, guid: bff4200a08f97c8499703a9c05dc2ed3,
+    type: 3}
 --- !u!1001 &1429432597484281355
 PrefabInstance:
   m_ObjectHideFlags: 0

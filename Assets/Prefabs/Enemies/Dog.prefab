@@ -209,6 +209,8 @@ MonoBehaviour:
   offset: {x: 0, y: 2.37, z: 0}
   deathSounds:
   - {fileID: 8300000, guid: 636d37ac5397cba4389130fc45140ea7, type: 3}
+  particlePrefab: {fileID: 6944765535045477593, guid: 346e2e80cba304449b3618dfe05db9c9,
+    type: 3}
 --- !u!1001 &4767621773477030398
 PrefabInstance:
   m_ObjectHideFlags: 0
