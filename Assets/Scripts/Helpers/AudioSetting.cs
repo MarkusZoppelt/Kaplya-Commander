@@ -20,11 +20,15 @@ public class AudioSetting
     private bool currentIsMuted;
     public bool IsMuted { get { return currentIsMuted; } }
 
+    private AudioManager manager;
+
     /// <summary>
     /// Load and apply the mute settings
     /// </summary>
-    public void Initialize()
+    public void Initialize(AudioManager manager)
     {
+        this.manager = manager;
+
         // A value lower than 0 means mute
         if (PlayerPrefs.GetInt($"{groupName}IsMuted", 0) < 0)
         {
@@ -38,13 +42,15 @@ public class AudioSetting
 
     public void Mute()
     {
-        AudioManager.SetVolume(groupName, -80f);
+        manager.SetVolume(groupName, -80f);
+        currentIsMuted = true;
         PlayerPrefs.SetInt($"{groupName}IsMuted", -1);
     }
 
     public void Unmute()
     {
-        AudioManager.SetVolume(groupName, volume);
+        manager.SetVolume(groupName, volume);
+        currentIsMuted = false;
         PlayerPrefs.SetInt($"{groupName}IsMuted", 1);
     }
 }
