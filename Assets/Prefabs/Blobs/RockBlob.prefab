@@ -9,13 +9,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1956487235614014573}
-  - component: {fileID: 7908912717282585283}
+  - component: {fileID: 8468769929611411682}
   - component: {fileID: 2652495687958098823}
   - component: {fileID: 7013291689708697921}
   - component: {fileID: 6516375516363960836}
   - component: {fileID: 5487539184361535666}
   m_Layer: 14
-  m_Name: ConductorBlob
+  m_Name: RockBlob
   m_TagString: friendly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -36,7 +36,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7908912717282585283
+--- !u!114 &8468769929611411682
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -45,11 +45,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3517451321798508908}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1aa82cd8181c4841a645f53f207270b, type: 3}
+  m_Script: {fileID: 11500000, guid: 5376e25b65c47724d8667a77dbc66281, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   navMeshAgent: {fileID: 2652495687958098823}
-  movementSpeed: 8
+  movementSpeed: 7
   defaultProximity: 1
   throwHeight: 6
   throwSpeed: 15
@@ -57,7 +57,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2048
   interactionRange: 3
-  carryProximity: 0.5
+  carryProximity: 0.1
 --- !u!195 &2652495687958098823
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -109,7 +109,7 @@ MonoBehaviour:
   onDeath:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7908912717282585283}
+      - m_Target: {fileID: 8468769929611411682}
         m_TargetAssemblyTypeName: BlobBase, Assembly-CSharp
         m_MethodName: OnDeath
         m_Mode: 1
@@ -196,7 +196,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8645a5c82dd1a56489ba951601a2151a, type: 2}
+  - {fileID: 2100000, guid: 8fafa9dd9dcbdec4b9038b098e9fce2a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

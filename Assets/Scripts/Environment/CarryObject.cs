@@ -9,6 +9,7 @@ public class CarryObject : Interactable
     [SerializeField] internal PneumaticTube carryTo;
     [SerializeField] internal UnityEvent onSuckedIntoTube;
     [SerializeField] internal NavMeshAgent agent;
+    [SerializeField] internal Collider interactionCollider;
     [SerializeField] internal Transform meshTransform;
     [SerializeField] internal float carrySpeed = 4f;
     [SerializeField] internal Vector3 carryOffset;
@@ -18,6 +19,7 @@ public class CarryObject : Interactable
         base.StartInteraction();
         meshTransform.position += carryOffset;
         agent.SetDestination(carryTo.transform.position);
+        display.gameObject.SetActive(false);
     }
 
     internal override void StopInteraction()
@@ -25,6 +27,7 @@ public class CarryObject : Interactable
         base.StopInteraction();
         meshTransform.position -= carryOffset;
         agent.SetDestination(transform.position);
+        display.gameObject.SetActive(true);
     }
 
     public override BlobState AssignBlob(BlobBase blob)
@@ -54,8 +57,9 @@ public class CarryObject : Interactable
         agent.speed = carrySpeed + ((numberOfAssigendBlobs - blobsNeeded) * 0.2f * carrySpeed);
     }
 
-    public void OnSuckedIntoTube()
+    public virtual void OnSuckedIntoTube()
     {
+        interactionCollider.enabled = false;
         foreach(var blob in assignedBlobs.ToArray())
         {
             RemoveBlob(blob);
