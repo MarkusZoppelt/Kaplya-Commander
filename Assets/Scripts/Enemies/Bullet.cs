@@ -5,6 +5,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] public GameObject impactEffect;
+    [SerializeField] public GameObject impactParticles;
     [SerializeField] public float damage;
     [SerializeField] public float speed;
     [SerializeField] public Vector3 direction;
@@ -21,6 +22,7 @@ public class Bullet : MonoBehaviour
             hitTarget.TakeDamage(damage);
 
         Instantiate(impactEffect, collision.GetContact(0).point, Quaternion.identity);
+        Instantiate(impactParticles, collision.GetContact(0).point, Quaternion.identity);
         Destroy(gameObject);
     }
 }
