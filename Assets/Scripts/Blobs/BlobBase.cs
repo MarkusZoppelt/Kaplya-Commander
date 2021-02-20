@@ -29,6 +29,10 @@ public class BlobBase : MonoBehaviour
     [SerializeField] private LayerMask interactableLayerMask;
     [SerializeField] private float interactionRange = 3f;
     [SerializeField] private float carryProximity = 0.1f;
+    [Header("Fighting")]
+    [SerializeField] private float damagePerAttack = 5f;
+    [SerializeField] private float attackRange = 1f;
+    [SerializeField] private float timeBetweenAttacks = 1f;
     #endregion
 
     internal BlobState state;
@@ -60,6 +64,9 @@ public class BlobBase : MonoBehaviour
     private Vector3 lastTargetPosition = Vector3.zero;
 
     private Interactable currentInteractable;
+
+    private Destructable targetDestructable;
+    private float attackCoolDown = 0f;
 
     #region Unity methods
     internal virtual void Awake()
@@ -104,6 +111,9 @@ public class BlobBase : MonoBehaviour
             case BlobState.Interacting:
                 InitializeInteracting();
                 break;
+            case BlobState.Fighting:
+                InitializeFighting();
+                break;
         }
     }
 
@@ -120,6 +130,9 @@ public class BlobBase : MonoBehaviour
                 break;
             case BlobState.Interacting:
                 ExecuteInteracting();
+                break;
+            case BlobState.Fighting:
+                ExecuteFighting();
                 break;
             default:
                 break;
@@ -184,6 +197,55 @@ public class BlobBase : MonoBehaviour
     }
     #endregion
 
+    #region Fighting
+    public virtual void StartFighting(Destructable targetDestructable)
+    {
+        this.targetDestructable = targetDestructable;
+    }
+
+    internal virtual void InitializeFighting()
+    {
+        attackCoolDown = 0f;
+        followTarget = currentInteractable.transform;
+        followOffset = currentInteractable.GetBlobOffset(this);
+
+        transform.DOJump(transform.position, 0.75f, 1, 0.33f);
+    }
+
+    internal virtual void ExecuteFighting()
+    {
+        MoveTowardsFollowTarget();
+        Attack();
+    }
+
+    internal virtual void Attack()
+    {
+        attackCoolDown -= Time.deltaTime;
+        if (!CanAttack())
+        {
+            return;
+        }
+
+        targetDestructable.TakeDamage(damagePerAttack);
+        attackCoolDown = timeBetweenAttacks;
+    }
+
+    internal virtual bool CanAttack()
+    {
+        if (attackCoolDown > 0f)
+        {
+            return false;
+        }
+
+        if (Vector3.Distance(transform.position, lastTargetPosition) > attackRange)
+        {
+            return false;
+        }
+
+        return true;
+    }
+    #endregion
+
     #region Getting Thrown
     public virtual void GetThrown(Vector3 startPosition, Vector3 endPosition)
     {
@@ -226,6 +288,8 @@ public class BlobBase : MonoBehaviour
         {
             // Attack closest enemy
             var closestEnemy = Helper.GetClosestObject(nearbyEnemies.ToArray(), transform.position);
+            currentInteractable = closestEnemy;
+            State = closestEnemy.AssignBlob(this);
             return;
         }
 
