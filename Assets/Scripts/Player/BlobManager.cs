@@ -58,6 +58,11 @@ public class BlobManager : MonoBehaviour
         return instance.reserves[type];
     }
 
+    public static int GetCurrentReserveCount()
+    {
+        return GetCurrentReserves(BlobType.Rock) + GetCurrentReserves(BlobType.Conductor);
+    }
+
     public static bool HasReserves(BlobType type)
     {
         return instance.reserves[type] > 0;
