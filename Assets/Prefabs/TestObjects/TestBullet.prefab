@@ -127,6 +127,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 953e48bbfa393e5d4ab6baf302f1071c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  impactEffect: {fileID: 6042524499044807292, guid: b985a919294da4743afdaddfeaa9c610,
+    type: 3}
   damage: 0
   speed: 0
   direction: {x: 0, y: 0, z: 0}
