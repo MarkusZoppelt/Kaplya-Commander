@@ -8,6 +8,11 @@ public class GiantButton : Interactable
     [SerializeField] internal Vector3 pressedOffset;
     [SerializeField] internal UnityEvent onButtonPressed;
 
+    public override bool CanBeAssigned(BlobBase blob)
+    {
+        return blob.GetType() == typeof(RockBlob);
+    }
+
     internal override void StartInteraction()
     {
         base.StartInteraction();
