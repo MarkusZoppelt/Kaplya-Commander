@@ -27,6 +27,7 @@ public class PneumaticTube : MonoBehaviour
         if (blob != null && blob.State == BlobState.GoingToTube)
         {
             SuckUp(blob.transform);
+            blob.PlayThrowSound();
             BlobManager.ForgetBlob(blob);
             return;
         }
@@ -74,6 +75,7 @@ public class PneumaticTube : MonoBehaviour
     public void SpawnBlob(BlobType type, PlayerController player, Action callback)
     {
         var blob = Instantiate(BlobManager.GetBlobPrefab(type), tubeOpening.position, Quaternion.identity);
+        blob.PlayThrowSound();
         blob.transform.localScale = Vector3.zero;
         blob.transform.DOMove(transform.position, carryObjectSuckUpDuration).SetEase(Ease.OutBounce);
         blob.transform.DOScale(1f, carryObjectSuckUpDuration).SetEase(Ease.OutExpo)

@@ -277,7 +277,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
-            callIndicator.transform.localScale = new Vector3(callRange, callRange, callRange);
+            callIndicator.transform.localScale = new Vector3(callRange * 2, callRange * 2, callRange * 2);
             yield return null;
         }
     }
