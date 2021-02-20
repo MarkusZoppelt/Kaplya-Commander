@@ -5,23 +5,6 @@ using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
 {
-    #region Singleton
-    private static AudioManager instance;
-
-    private void Awake()
-    {
-        if (instance != null && instance != this)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-    }
-    #endregion
-
     #region Inspector
     [Header("References")]
     [SerializeField] internal AudioMixer audioMixer;
@@ -44,7 +27,7 @@ public class AudioManager : MonoBehaviour
 
         foreach (var setting in audioSettings)
         {
-            setting.Initialize();
+            setting.Initialize(this);
             settingsDictionary.Add(setting.groupName, setting);
         }
     }
@@ -52,19 +35,37 @@ public class AudioManager : MonoBehaviour
     /// <summary>
     /// Returns whether a group is muted. Returns true if the group does not exist.
     /// </summary>
-    public static bool IsMuted(string groupName)
+    public bool IsMuted(string groupName)
     {
-        if (!instance.settingsDictionary.ContainsKey(groupName))
+        if (!settingsDictionary.ContainsKey(groupName))
         {
             Debug.LogWarning($"Trying to access the mute status of unknown audio group \"{groupName}\"");
             return true;
         }
 
-        return instance.settingsDictionary[groupName].IsMuted;
+        return settingsDictionary[groupName].IsMuted;
     }
 
-    public static void SetVolume(string groupName, float volume)
+    public void ToggleMute(string groupName)
     {
-        instance.audioMixer.SetFloat(groupName, volume);
+        if (!settingsDictionary.ContainsKey(groupName))
+        {
+            Debug.LogWarning($"Trying to access the mute status of unknown audio group \"{groupName}\"");
+            return;
+        }
+
+        if (IsMuted(groupName))
+        {
+            settingsDictionary[groupName].Unmute();
+        }
+        else
+        {
+            settingsDictionary[groupName].Mute();
+        }
+    }
+
+    public void SetVolume(string groupName, float volume)
+    {
+        audioMixer.SetFloat(groupName, volume);
     }
 }
