@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PauseMenuController : MonoBehaviour
 {
+    [SerializeField] private PlayerController player;
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private Image musicButtonImage;
     [SerializeField] private Image sfxButtonImage;
@@ -19,11 +21,19 @@ public class PauseMenuController : MonoBehaviour
     {
         Time.timeScale = 0f;
         pauseMenu.SetActive(true);
+        player.IsInMenu = true;
     }
     public void Unpause()
     {
         Time.timeScale = 1f;
         pauseMenu.SetActive(false);
+        player.IsInMenu = false;
+    }
+
+    public void BackToMenu()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void ToggleAudio(string groupName)

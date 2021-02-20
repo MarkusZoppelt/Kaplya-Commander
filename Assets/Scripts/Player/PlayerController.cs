@@ -14,6 +14,8 @@ public enum PlayerActionState
 public class PlayerController : MonoBehaviour
 {
     #region Inspector
+    [Header("Pause Menu")]
+    [SerializeField] private PauseMenuController pauseController;
     [Header("Movement")]
     [SerializeField] private CharacterController controller;
     [SerializeField] private float speed = 3f;
@@ -103,6 +105,10 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (Keyboard.current.escapeKey.wasPressedThisFrame)
+        {
+            pauseController.Pause();
+        }
         Move();
         UpdateTargetIndicator();
     }

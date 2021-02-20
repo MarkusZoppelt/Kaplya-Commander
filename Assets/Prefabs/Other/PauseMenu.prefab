@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c7e3ee2b77fc414b808ecaff043e977, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   pauseMenu: {fileID: 2061217861957868387}
   musicButtonImage: {fileID: 3710320298087058452}
   sfxButtonImage: {fileID: 7367089966480498707}
@@ -273,7 +274,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2061217862117994068}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3916478379799963541}
+        m_TargetAssemblyTypeName: PauseMenuController, Assembly-CSharp
+        m_MethodName: Unpause
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2061217862822364013
 GameObject:
   m_ObjectHideFlags: 0
@@ -529,7 +542,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2061217862940145872}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3916478379799963541}
+        m_TargetAssemblyTypeName: PauseMenuController, Assembly-CSharp
+        m_MethodName: BackToMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2061217863286589191
 GameObject:
   m_ObjectHideFlags: 0
@@ -1370,8 +1395,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: MainMenuController, Assembly-CSharp
+      - m_Target: {fileID: 3916478379799963541}
+        m_TargetAssemblyTypeName: PauseMenuController, Assembly-CSharp
         m_MethodName: ToggleAudio
         m_Mode: 5
         m_Arguments:
@@ -1382,8 +1407,8 @@ MonoBehaviour:
           m_StringArgument: SFX
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: MainMenuController, Assembly-CSharp
+      - m_Target: {fileID: 3916478379799963541}
+        m_TargetAssemblyTypeName: PauseMenuController, Assembly-CSharp
         m_MethodName: UpdateSFXButton
         m_Mode: 1
         m_Arguments:
@@ -1515,8 +1540,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: MainMenuController, Assembly-CSharp
+      - m_Target: {fileID: 3916478379799963541}
+        m_TargetAssemblyTypeName: PauseMenuController, Assembly-CSharp
         m_MethodName: ToggleAudio
         m_Mode: 5
         m_Arguments:
@@ -1527,8 +1552,8 @@ MonoBehaviour:
           m_StringArgument: Music
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: MainMenuController, Assembly-CSharp
+      - m_Target: {fileID: 3916478379799963541}
+        m_TargetAssemblyTypeName: PauseMenuController, Assembly-CSharp
         m_MethodName: UpdateMusicButton
         m_Mode: 1
         m_Arguments:
