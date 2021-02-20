@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class BaseEnemyAttack : MonoBehaviour
 {
+    [Header("Base Attack References")]
+    [SerializeField] internal AudioSource audio;
+    [Header("Base Attack Settings")]
     [SerializeField] internal float damage;
     [SerializeField] internal float range;
     [SerializeField] internal float timeBetweenAttacks;
@@ -20,7 +23,8 @@ public class BaseEnemyAttack : MonoBehaviour
     {
         if (coolDownTime > 0)
             return;
-        
+
+        audio?.Play();
         target.TakeDamage(damage);
         coolDownTime = timeBetweenAttacks;
     }

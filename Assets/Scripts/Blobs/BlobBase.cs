@@ -35,6 +35,12 @@ public class BlobBase : MonoBehaviour
     [Header("Visuals")]
     [SerializeField] private SpriteRenderer blobSprite;
     [SerializeField] private Animator blobAnimator;
+    [Header("SFX")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip[] callSounds;
+    [SerializeField] private AudioClip[] throwSounds;
+    [SerializeField] private AudioClip[] fightSounds;
+    [SerializeField] private AudioClip[] carrySounds;
     #endregion
 
     internal BlobState state;
@@ -153,6 +159,7 @@ public class BlobBase : MonoBehaviour
     {
         State = BlobState.Following;
         followTarget = target;
+        PlayAudioClip(callSounds[Random.Range(0, callSounds.Length)]);
     }
 
     internal virtual void InitializeFollowing()
@@ -180,6 +187,7 @@ public class BlobBase : MonoBehaviour
     internal virtual void InitializeCarrying()
     {
         blobAnimator.SetBool("isCarrying", true);
+        PlayAudioClip(carrySounds[Random.Range(0, carrySounds.Length)]);
         transform.DOJump(transform.position, 0.75f, 1, 0.33f);
     }
 
@@ -192,6 +200,7 @@ public class BlobBase : MonoBehaviour
         State = BlobState.Interacting;
         blobAnimator.SetBool("specialActive", true);
         currentInteractable = target;
+        PlayAudioClip(callSounds[Random.Range(0, callSounds.Length)]);
     }
 
     internal virtual void InitializeInteracting()
@@ -238,6 +247,7 @@ public class BlobBase : MonoBehaviour
             return;
         }
 
+        PlayAudioClip(fightSounds[Random.Range(0, fightSounds.Length)]);
         targetDestructable.TakeDamage(damagePerAttack);
         attackCoolDown = timeBetweenAttacks;
     }
@@ -266,6 +276,7 @@ public class BlobBase : MonoBehaviour
         blobAnimator.SetBool("isFlying", true);
 
         float duration = Vector3.Distance(startPosition, endPosition) / throwSpeed;
+        PlayThrowSound();
         transform.DOJump(endPosition, throwHeight, 1, duration).OnComplete(OnLanding);
     }
 
@@ -339,4 +350,16 @@ public class BlobBase : MonoBehaviour
         currentInteractable?.RemoveBlob(this);
         controller.RemoveBlobFromFollowers(this);
     }
+
+    #region Sounds
+    internal void PlayAudioClip(AudioClip clip)
+    {
+        audioSource.PlayOneShot(clip);
+    }
+
+    public void PlayThrowSound()
+    {
+        PlayAudioClip(throwSounds[Random.Range(0, throwSounds.Length)]);
+    }
+    #endregion
 }

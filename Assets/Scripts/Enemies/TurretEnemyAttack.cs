@@ -18,6 +18,8 @@ public class TurretEnemyAttack : BaseEnemyAttack
         if (coolDownTime > 0)
             return;
 
+
+        audio?.Play();
         Bullet bullet = Instantiate(bulletPrefab, muzzle.position, Quaternion.identity);
 
         bullet.damage = this.damage;
