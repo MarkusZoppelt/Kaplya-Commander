@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 6516375516363960836}
   - component: {fileID: 5487539184361535666}
   - component: {fileID: 4745664389032932209}
+  - component: {fileID: 409649464914722695}
   m_Layer: 14
   m_Name: ConductorBlob
   m_TagString: friendly
@@ -61,9 +62,9 @@ MonoBehaviour:
   damagePerAttack: 5
   attackRange: 1
   timeBetweenAttacks: 1
-  controller: {fileID: 0}
   blobSprite: {fileID: 815351431135307861}
   blobAnimator: {fileID: 815351431135307867}
+  controller: {fileID: 0}
 --- !u!195 &2652495687958098823
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -127,6 +128,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 409649464914722695}
+        m_TargetAssemblyTypeName: CorpseSpawner, Assembly-CSharp
+        m_MethodName: SpawnCorpse
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!54 &5487539184361535666
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -155,6 +168,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef914492a5f20694595cc66c65bb5e9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &409649464914722695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3517451321798508908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddb04c5a4a3b67d4b9bc1bf9991fb06e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spritePrefab: {fileID: 1767355614205785693, guid: 0b472aa609c28e8468db125587966802,
+    type: 3}
+  offset: {x: 0, y: 0.71, z: 0}
 --- !u!1001 &1429432597484281355
 PrefabInstance:
   m_ObjectHideFlags: 0
