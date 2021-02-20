@@ -268,6 +268,12 @@ public class PlayerController : MonoBehaviour
     {
         blob.StartFollowing(followerTarget);
         followingBlobs.Add(blob);
+        blob.controller = this;
+    }
+
+    public void RemoveBlobFromFollowers(BlobBase blob)
+    {
+        followingBlobs.Remove(blob);
     }
 
     public void SendAllBlobsToTube(PneumaticTube tube)

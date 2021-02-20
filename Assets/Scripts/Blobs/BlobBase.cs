@@ -58,6 +58,7 @@ public class BlobBase : MonoBehaviour
         }
     }
 
+    [HideInInspector] public PlayerController controller;
     private Transform followTarget;
     private Vector3 followOffset = Vector3.zero;
     private Vector3 lastTargetPosition = Vector3.zero;
@@ -315,5 +316,7 @@ public class BlobBase : MonoBehaviour
     public virtual void OnDeath()
     {
         BlobManager.ForgetBlob(this);
+        currentInteractable?.RemoveBlob(this);
+        controller.RemoveBlobFromFollowers(this);
     }
 }
