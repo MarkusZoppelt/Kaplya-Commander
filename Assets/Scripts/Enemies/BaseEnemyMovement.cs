@@ -7,6 +7,8 @@ public class BaseEnemyMovement : MonoBehaviour
 {
     [SerializeField] internal NavMeshAgent agentSmith;
     [SerializeField] internal float speed;
+    [SerializeField] internal Animator enemyAnimator;
+    [SerializeField] internal SpriteRenderer enemySprite;
 
     public virtual void Awake()
     {
@@ -21,6 +23,16 @@ public class BaseEnemyMovement : MonoBehaviour
     {
         agentSmith.enabled = true;
         agentSmith.SetDestination(pos);
+        if(enemyAnimator != null) {
+            enemyAnimator.SetBool("isWalking", true);
+        }
+        if(enemySprite != null) {
+            if(pos.x < transform.position.x) {
+                enemySprite.flipX = true;
+            } else {
+                enemySprite.flipX = false;
+            }
+        }
     }
 
     public virtual Vector3 CalculateTargetPosition(GameObject[] targets)
@@ -43,5 +55,8 @@ public class BaseEnemyMovement : MonoBehaviour
     public virtual void StopMoving()
     {
         agentSmith.enabled = false;
+        if (enemyAnimator != null) {
+            enemyAnimator.SetBool("isWalking", false);
+        }
     }
 }
