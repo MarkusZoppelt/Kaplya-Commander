@@ -9,19 +9,20 @@ public class DeathEvent : UnityEvent<GameObject> { }
 public class Destructable: MonoBehaviour
 {
     [SerializeField] private float maxHealth;
-    [SerializeField] private DeathEvent onDeath;
-    private float currentHealth;
+    [SerializeField] public DeathEvent onDeath;
+    public float CurrentHealth { get; private set; }
+    public float MaxHealth { get { return maxHealth; } }
 
     internal void Start()
     {
-        currentHealth = maxHealth;
+        CurrentHealth = maxHealth;
     }
 
     public void TakeDamage(float damage)
     {
-        currentHealth -= damage;
+        CurrentHealth -= damage;
 
-        if(currentHealth <= 0f)
+        if(CurrentHealth <= 0f)
         {
             Die();
         }

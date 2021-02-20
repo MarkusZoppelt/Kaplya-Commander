@@ -9,14 +9,21 @@ public enum EnemyActionState
     RunningAtPlayer
 }
 
-public class EnemyController : MonoBehaviour
+public class EnemyController : Interactable
 {
     [SerializeField] internal BaseEnemyAttack attack;
     [SerializeField] internal BaseEnemyMovement movement;
     [SerializeField] internal BaseEnemyVision vision;
+    [SerializeField] internal Destructable destructable;
     internal GameObject[] targets;
 
     public EnemyActionState State { get; internal set; }
+
+    internal override void Awake()
+    {
+        base.Awake();
+        destructable.onDeath.AddListener((self) => OnDeath(self));
+    }
     
     private void Update()
     {
@@ -34,5 +41,20 @@ public class EnemyController : MonoBehaviour
             return;
 
         attack.Attack(tar);
+    }
+
+    public override BlobState AssignBlob(BlobBase blob)
+    {
+        var state = base.AssignBlob(blob);
+        blob.StartFighting(destructable);
+        return state;
+    }
+
+    private void OnDeath(GameObject self)
+    {
+        foreach(var blob in assignedBlobs.ToArray())
+        {
+            RemoveBlob(blob);
+        }
     }
 }
