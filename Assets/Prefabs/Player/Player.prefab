@@ -194,6 +194,8 @@ MonoBehaviour:
     m_Bits: 16384
   followerTarget: {fileID: 2021324587331520194}
   maxFollowers: 20
+  playerSprite: {fileID: 9196616110394023997}
+  playerAnimator: {fileID: 9196616110394023996}
 --- !u!143 &7745495853831152632
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1195,7 +1197,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9185177360936933928}
-  m_LocalRotation: {x: 0.28324163, y: -0.000000011241824, z: 0.0000000033201162, w: 0.95904857}
+  m_LocalRotation: {x: 0.28324166, y: 0.000000030713224, z: -0.000000009070724, w: 0.95904857}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1319,6 +1321,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee1626ba2d4f5a240b48f95ffe250c11, type: 3}
+--- !u!95 &9196616110394023996 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4592139816578878916, guid: ee1626ba2d4f5a240b48f95ffe250c11,
+    type: 3}
+  m_PrefabInstance: {fileID: 4619144509747834360}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &9196616110394023997 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 4592139816578878917, guid: ee1626ba2d4f5a240b48f95ffe250c11,
+    type: 3}
+  m_PrefabInstance: {fileID: 4619144509747834360}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &9196616110394023986 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4592139816578878922, guid: ee1626ba2d4f5a240b48f95ffe250c11,

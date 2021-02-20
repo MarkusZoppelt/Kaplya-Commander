@@ -62,6 +62,8 @@ MonoBehaviour:
   attackRange: 1
   timeBetweenAttacks: 1
   controller: {fileID: 0}
+  blobSprite: {fileID: 602866768549992573}
+  blobAnimator: {fileID: 602866768549992574}
 --- !u!195 &2652495687958098823
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -230,6 +232,18 @@ PrefabInstance:
 --- !u!4 &602866768549992572 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2436626109504947161, guid: 6678d6bf1ed205749b4f1a2243a2fea2,
+    type: 3}
+  m_PrefabInstance: {fileID: 2994175395990035365}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &602866768549992573 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 2436626109504947160, guid: 6678d6bf1ed205749b4f1a2243a2fea2,
+    type: 3}
+  m_PrefabInstance: {fileID: 2994175395990035365}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &602866768549992574 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2436626109504947163, guid: 6678d6bf1ed205749b4f1a2243a2fea2,
     type: 3}
   m_PrefabInstance: {fileID: 2994175395990035365}
   m_PrefabAsset: {fileID: 0}
