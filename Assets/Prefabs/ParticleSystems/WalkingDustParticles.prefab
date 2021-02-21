@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 5860936585116018606}
   - component: {fileID: 5860936585116018605}
   - component: {fileID: 5860936585116018604}
-  - component: {fileID: 8221169929289563115}
   m_Layer: 0
   m_Name: WalkingDustParticles
   m_TagString: Untagged
@@ -4832,16 +4831,3 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &8221169929289563115
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5860936585116018611}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90584c3748148b24c8588ce555b38c55, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lifetime: 9

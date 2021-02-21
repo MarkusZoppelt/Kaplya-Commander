@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1534059950784143175}
   - component: {fileID: 6159805213763836133}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -186,6 +186,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: door
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 301ae5e7abf35ab40b99f7587bb4c707,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 301ae5e7abf35ab40b99f7587bb4c707, type: 3}
