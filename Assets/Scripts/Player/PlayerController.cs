@@ -58,7 +58,7 @@ public class PlayerController : MonoBehaviour
     // Throwing blobs
     private Vector3 throwTargetPosition;
     public List<BlobBase> followingBlobs;
-    private BlobType currentBlobType;
+    private BlobType currentBlobType = BlobType.Rock;
 
     public BlobType CurrentBlobType
     {
