@@ -41,6 +41,10 @@ public class CarryObject : Interactable
 
     public override void RemoveBlob(BlobBase blob)
     {
+        if (blob == null)
+        {
+            return;
+        }
         base.RemoveBlob(blob);
         blob.transform.SetParent(null);
     }
