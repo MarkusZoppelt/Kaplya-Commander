@@ -15,9 +15,12 @@ In "Kaplya Commander" you control Comrade, a prisoner locked up in a azakh priso
 - Point and click to throw your Kaplyas
 
 ## Kaplya Types
-- Rock Kaplya
+- Rock Kaplya:
+
   Coated in a layer of granite they're heavy and perfect for pushing buttons.
-- Conductor Kaplya
+
+- Conductor Kaplya:
+
   A skeleton reinforced with silver makes these Kaplyas the right choice for closing circuits.a
 
 ## Enemies
