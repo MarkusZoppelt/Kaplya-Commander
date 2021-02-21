@@ -77,8 +77,6 @@ public class BlobBase : MonoBehaviour
     private Destructable targetDestructable;
     private float attackCoolDown = 0f;
 
-    
-
     #region Unity methods
     internal virtual void Awake()
     {
@@ -198,7 +196,6 @@ public class BlobBase : MonoBehaviour
     public virtual void StartInteracting(Interactable target)
     {
         State = BlobState.Interacting;
-        blobAnimator.SetBool("specialActive", true);
         currentInteractable = target;
         PlayAudioClip(callSounds[Random.Range(0, callSounds.Length)]);
     }
@@ -207,6 +204,7 @@ public class BlobBase : MonoBehaviour
     {
         followTarget = currentInteractable.transform;
         followOffset = currentInteractable.GetBlobOffset(this);
+        blobAnimator.SetBool("specialActive", true);
 
         transform.DOJump(transform.position, 0.75f, 1, 0.33f);
     }
