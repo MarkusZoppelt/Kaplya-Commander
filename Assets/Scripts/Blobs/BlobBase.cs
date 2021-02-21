@@ -53,7 +53,7 @@ public class BlobBase : MonoBehaviour
 
         set
         {
-            if (navMeshAgent != null)
+            if (navMeshAgent == null)
             {
                 return;
             }
