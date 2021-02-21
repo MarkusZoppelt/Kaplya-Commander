@@ -9,6 +9,12 @@ public class ElectricField : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        var blob = other.GetComponent<ConductorBlob>();
+        if (blob != null)
+        {
+            return;
+        }
+
         Destructable destructable = other.GetComponent<Destructable>();
         if(destructable == null)
         {
