@@ -53,13 +53,16 @@ public class BlobBase : MonoBehaviour
 
         set
         {
-            if (value == BlobState.Idle || value == BlobState.Carrying)
+            if(navMeshAgent != null)
             {
-                navMeshAgent.enabled = false;
-            }
-            else
-            {
-                navMeshAgent.enabled = true;
+                if (value == BlobState.Idle || value == BlobState.Carrying)
+                {
+                    navMeshAgent.enabled = false;
+                }
+                else
+                {
+                    navMeshAgent.enabled = true;
+                }
             }
 
             state = value;
